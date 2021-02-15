@@ -109,13 +109,25 @@
   :config
   (add-hook 'org-mode-hook 'my-olivetti))
 
+;; Org Bullets
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
 ;; Org
 (use-package org
   :ensure t
   :config
+  (setq org-hide-emphasis-markers t)
+  (font-lock-add-keywords 'org-mode
+			  '(("^ *\\([-]\\) "
+			     (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   (setq org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "INACTIVE")))
   (setq org-log-done 'time) ; timestamp when done or inactive
-  (setq org-confirm-babel-evaluate nil))
+  (setq org-confirm-babel-evaluate nil)
+  (require 'ob-js) ; needed for evaluating javascript (not documented anywhere?!)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((js . t) (python . t))))
 
 ;; Telephone line
 (use-package telephone-line
@@ -140,6 +152,7 @@
 
 ;;; Startup
 ;;; -------
+
 
 (defun display-startup-echo-area-message ()
   (message "Emacs has loaded successfully"))
