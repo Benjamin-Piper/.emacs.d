@@ -16,11 +16,18 @@
 (customize-set-variable 'menu-bar-mode nil)
 (customize-set-variable 'tool-bar-mode nil)
 (customize-set-variable 'scroll-bar-mode nil)
+
+;; Fonts
 (set-frame-font "Meslo LG S")
+(custom-theme-set-faces
+ 'user
+ '(variable-pitch ((t (:family "Open Sans" :height 120))))
+ '(fixed-pitch ((t (:family "Meslo LG S" :height 102)))))
 
 ;; Remove messages
 (setq-default message-log-max nil)
-(kill-buffer "*Messages*")
+(when (get-buffer "*Messages*")
+  (kill-buffer "*Messages*"))
 
 ;; Autosave & Backups
 (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))
@@ -109,10 +116,6 @@
   :config
   (add-hook 'org-mode-hook 'my-olivetti))
 
-;; Org Bullets
-(use-package org-bullets
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
 ;; Org
 (use-package org
   :ensure t
@@ -125,6 +128,24 @@
   (setq org-log-done 'time) ; timestamp when done or inactive
   (setq org-confirm-babel-evaluate nil)
   (require 'ob-js) ; needed for evaluating javascript (not documented anywhere?!)
+ 
+  ;; Fixed & Variable
+  (custom-theme-set-faces
+   'user
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-link ((t (:inherit link :weight regular))))
+   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+   '(org-meta-line ((t (:inherit (font-lock-comment-face shadow fixed-pitch)))))
+   '(org-property-value ((t (:inherit fixed-pitch))) t)
+   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-table ((t (:inherit fixed-pitch))))
+   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+   '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
+
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'org-mode-hook 'variable-pitch-mode)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((js . t) (python . t))))
