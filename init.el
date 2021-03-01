@@ -69,19 +69,10 @@
   "inserts a space before the cursor in normal mode"
   (interactive)
   (insert " "))
-(defun comment-or-uncomment-region-or-line ()
-    "Comments or uncomments the region or the current line if there's no active region."
-    (interactive)
-    (let (beg end)
-        (if (region-active-p)
-            (setq beg (region-beginning) end (region-end))
-            (setq beg (line-beginning-position) end (line-end-position)))
-        (comment-or-uncomment-region beg end)))
 (use-package evil
   :ensure t
   :config
   (define-key evil-normal-state-map "[" 'evil-space)
-  (define-key evil-visual-state-map "/" 'comment-or-uncomment-region-or-line)
   (setq evil-normal-state-cursor `(box ,normal-colour))
   (setq evil-insert-state-cursor `(bar ,insert-colour))
   (setq evil-insert-state-message nil)
