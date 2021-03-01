@@ -14,6 +14,9 @@
   (interactive)
   (switch-to-buffer "*scratch*"))
 
+;; Ignore left-window button
+(global-set-key [C-lwindow] 'ignore)
+
 (use-package restart-emacs :ensure t)
 
 (use-package general
