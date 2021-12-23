@@ -47,10 +47,16 @@
   (file-leader-def 'normal 'override
     "f" 'helm-find-files)
 
+  ;; JOURNAL
+  (general-create-definer journal-leader-def :prefix "SPC j")
+  (journal-leader-def 'normal 'override
+    "j" 'org-journal-new-entry)
+		      
+
   ;; MODES
   (general-create-definer mode-leader-def :prefix "SPC m")
   (mode-leader-def 'normal 'override
-    "o" 'org-mode) 
+    "o" 'org-mode)
 
   ;; WINDOWS CURRENT
   (general-create-definer window-leader-def :prefix "SPC w")

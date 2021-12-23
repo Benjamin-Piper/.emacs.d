@@ -101,7 +101,7 @@
   "My custom olivetti setup"
   (interactive)
   (olivetti-set-width 100)
-  (turn-on-olivetti-mode))
+  (olivetti-mode))
 (use-package olivetti
   :ensure t
   :config
@@ -140,6 +140,14 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((js . t) (python . t))))
+
+(use-package org-journal
+  :ensure t
+  :defer t
+  :config
+  (setq org-journal-dir "~/Documents/journal/"
+        org-journal-date-format "%A %m %B"
+        org-journal-file-format "%Y-%m-%d.org"))
 
 ;; Telephone line
 (use-package telephone-line
