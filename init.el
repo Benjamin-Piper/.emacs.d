@@ -146,7 +146,7 @@
   :defer t
   :config
   (setq org-journal-dir "~/Documents/journal/"
-        org-journal-date-format "%A %m %B"
+        org-journal-date-format "%A %d %B"
         org-journal-file-format "%Y-%m-%d.org"))
 
 ;; Telephone line
