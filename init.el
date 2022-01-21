@@ -13,6 +13,7 @@
 (setq inhibit-splash-screen t)
 (setq visible-bell t)
 (setq use-dialog-box nil)
+(setq sentence-end-double-space nil)
 (customize-set-variable 'menu-bar-mode nil)
 (customize-set-variable 'tool-bar-mode nil)
 (customize-set-variable 'scroll-bar-mode nil)
