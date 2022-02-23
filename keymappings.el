@@ -50,7 +50,7 @@
   ;; JOURNAL
   (general-create-definer journal-leader-def :prefix "SPC j")
   (journal-leader-def 'normal 'override
-    "j" 'org-journal-new-entry)
+    "j" '(lambda () (interactive) (org-journal-new-entry nil) (delete-other-windows)))
 		      
 
   ;; MODES
